@@ -34,10 +34,10 @@ CHECK_ROOT
 dnf install mysql-server -y &>>$LOG_FILE_NAME
 VALIDATE $? "Installing mysql server $Y "
 
-systemctl enable mysqlid &>>$LOG_FILE_NAME
+systemctl enable mysqid &>>$LOG_FILE_NAME
 VALIDATE $? "Enabling mysql $Y "
 
-systemctl start mysqlid &>>$LOG_FILE_NAME
+systemctl start mysqld &>>$LOG_FILE_NAME
 VALIDATE $? "Starting mysql $Y "
 
 mysql -h aws82s.shop -u root -pExpenseApp@1 -e 'show database';
