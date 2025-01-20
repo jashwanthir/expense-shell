@@ -6,7 +6,7 @@ N="\e[0m"
 
 LOG_FOLDER="/var/log/expense-log"
 LOG_FILE=$( echo $0 | cut -d "." -f1)
-TIMESTAMP=$(date + -%y-%m-%d-%D-%H-%M-%S)
+TIMESTAMP=$(date +%Y-%m-%d-%D-%H-%M-%S)
 LOG_FILE_NAME=$LOG_FOLDER/$LOG_FILE-$TIMESTAMP.log
 
 VALIDATE()
@@ -34,7 +34,7 @@ CHECK_ROOT
 dnf install mysql-server -y &>>$LOG_FILE_NAME
 VALIDATE $? "Installing mysql server $Y "
 
-systemctl enable mysqid &>>$LOG_FILE_NAME
+systemctl enable mysqld &>>$LOG_FILE_NAME
 VALIDATE $? "Enabling mysql $Y "
 
 systemctl start mysqld &>>$LOG_FILE_NAME
