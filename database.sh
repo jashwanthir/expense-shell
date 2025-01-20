@@ -21,7 +21,7 @@ VALIDATE()
 }
 
 CHECK_ROOT(){
-    if [ USERID -ne 0 ]
+    if [ $USERID -ne 0 ]
     then
         echo " error:: need sudo acces to excute $R "
         exit 1
