@@ -31,20 +31,20 @@ CHECK_ROOT(){
 echo "scrpit started excuting : $TIMESTAMP "
 CHECK_ROOT
 
-dnf install mysql-server -y &>>$LOG_FILE_NAME
+dnf install mysql-server -y 
 VALIDATE $? "Installing mysql server $Y "
 
-systemctl enable mysqld &>>$LOG_FILE_NAME
+systemctl enable mysqld 
 VALIDATE $? "Enabling mysql $Y "
 
-systemctl start mysqld &>>$LOG_FILE_NAME
+systemctl start mysqld 
 VALIDATE $? "Starting mysql $Y "
 
 mysql -h aws82s.shop -u root -pExpenseApp@1 -e 'show database';
 
 if [ $? -ne 0 ]
 then 
-    echo " root password not setup " &>>$LOG_FILE_NAME
+    echo " root password not setup " 
     mysql_secure_installation  --set-root-pass ExpenseApp@1
     VALIDATE $? "setting root password"
 else
