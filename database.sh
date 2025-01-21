@@ -4,10 +4,10 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
-LOG_FOLDER="/var/log/expense-log"
+LOGS_FOLDER="/var/log/expense-log"
 LOG_FILE=$( echo $0 | cut -d "." -f1)
 TIMESTAMP=$(date +%Y-%m-%d-%D-%H-%M-%S)
-LOG_FILE_NAME=$LOG_FOLDER/$LOG_FILE-$TIMESTAMP.log
+LOG_FILE_NAME=$LOGS_FOLDER/$LOG_FILE-$TIMESTAMP.log
 
 VALIDATE()
 {
