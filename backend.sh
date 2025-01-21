@@ -60,7 +60,7 @@ VALIDATE $? "Downloading backend"
 cd /app
 rm -rf /app
 
-unzip/tmp/backend.zip &>>$LOG_FILE_NAME
+unzip /tmp/backend.zip &>>$LOG_FILE_NAME
 VALIDATE $? "UNZIPPING backendfile"
 
 npm install 
