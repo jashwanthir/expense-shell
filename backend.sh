@@ -60,11 +60,20 @@ VALIDATE $? "Downloading backend"
 cd /app
 rm -rf /app
 
+mkdir -p /app &>>$LOG_FILE_NAME
+VALIDATE $? "Creating app directory"
+
+curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$LOG_FILE_NAME
+VALIDATE $? "Downloading backend"
+
+cd /app
+rm -rf /app/*
+
 unzip /tmp/backend.zip &>>$LOG_FILE_NAME
 VALIDATE $? "unzip backend"
 
-npm install 
-VALIDATE $? "installing node package manager"
+npm install &>>$LOG_FILE_NAME
+VALIDATE $? "Installing dependencies"
 
 cp /home/ec2-user/expense-shell/backend.services /etc/systemd/system/backend.service
 
@@ -83,4 +92,4 @@ systemctl enable backend &>>$LOG_FILE_NAME
 VALIDATE $? "Enabling backend"
 
 systemctl restart backend &>>$LOG_FILE_NAME
-VALIDATE $? "Starting Backend"
+VALIDATE $? "Starting Backend
