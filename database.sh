@@ -44,9 +44,9 @@ mysql -h mysql.aws82s.shop -u root -pExpenseApp@1 -e 'show database';
 
 if [ $? -ne 0 ]
 then 
-    echo " root password not setup " &>>$LOG_FILE_NAME
+    echo " MYSQL root password not setup " &>>$LOG_FILE_NAME
     mysql_secure_installation  --set-root-pass ExpenseApp@1
     VALIDATE $? "setting root password"
 else
-    echo "root password already setup...  $Y skipping $N "
+    echo -e "root password already setup ...  $Y SKIPPING $N "
 fi
