@@ -61,7 +61,7 @@ cd /app
 rm -rf /app
 
 unzip /tmp/backend.zip &>>$LOG_FILE_NAME
-VALIDATE $? "UNZIPPING backendfile"
+VALIDATE $? "unzip backend"
 
 npm install 
 VALIDATE $? "installing node package manager"
