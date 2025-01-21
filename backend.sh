@@ -32,14 +32,14 @@ echo "scrpit started excuting at : $TIMESTAMP " &>>$LOG_FILE_NAME
 
 CHECK_ROOT
 
-dnf module disable nodejs -y &>>$LOG_FILE_NAME
-VALIDATE $? "Disabling existing default NodeJS"
+dnf module disable nodejs -y $LOG_FILE_NAME
+VALIDATE $? "disabling existing nodejs"
 
-dnf module enable nodejs:20 -y &>>$LOG_FILE_NAME
-VALIDATE $? "Enabling NodeJS 20"
+dnf module enable nodejs:20 -y $LOG_FILE_NAME
+VALIDATE $? "Enabling nodejs:20"
 
-dnf install nodejs -y &>>$LOG_FILE_NAME
-VALIDATE $? "Installing NodeJS"
+dnf install nodejs -y $LOG_FILE_NAME
+VALIDATE $? "installing nodejs"
 
 id expense &>>$LOG_FILE_NAME
 if [ $? -ne 0 ]
@@ -50,20 +50,21 @@ else
     echo -e "expense user already exists ... $Y SKIPPING $N"
 fi
 
-mkdir -p /app &>>$LOG_FILE_NAME
-VALIDATE $? "Creating app directory"
+
+mkdir -p /app $LOG_FILE_NAME &>>$LOG_FILE_NAME
+VALIDATE $? "creating app directoty"
 
 curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$LOG_FILE_NAME
 VALIDATE $? "Downloading backend"
 
 cd /app
-rm -rf /app/*
+rm -rf /app
 
-unzip /tmp/backend.zip &>>$LOG_FILE_NAME
-VALIDATE $? "unzip backend"
+unzip/tmp/backend.zip $LOG_FILE_NAME
+VALIDATE $? "UNZIPPING backendfile"
 
-npm install &>>$LOG_FILE_NAME
-VALIDATE $? "Installing dependencies"
+npm install 
+VALIDATE $? "installing node package manager"
 
 cp /home/ec2-user/expense-shell/backend.services /etc/systemd/system/backend.service
 
