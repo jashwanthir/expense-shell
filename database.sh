@@ -40,7 +40,7 @@ VALIDATE $? "Enabling mysql $Y "
 systemctl start mysqld &>>$LOG_FILE_NAME
 VALIDATE $? "Starting mysql $Y "
 
-mysql -h mysql.aws82s.shop -u root -pExpenseApp@1 -e 'show database';
+mysql -h mysql.aws82s.shop -u root -pExpenseApp@1 -e 'show databases';
 
 if [ $? -ne 0 ]
 then 
