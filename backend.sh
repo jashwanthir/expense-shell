@@ -27,18 +27,18 @@ CHECK_ROOT(){
         exit 1
     fi
 } 
-
 echo "scrpit started excuting at : $TIMESTAMP " &>>$LOG_FILE_NAME
 
 CHECK_ROOT
 
-dnf module disable nodejs -y $LOG_FILE_NAME
+dnf module disable nodejs -y &>>$LOG_FILE_NAME
 VALIDATE $? "disabling existing nodejs"
 
-dnf module enable nodejs:20 -y $LOG_FILE_NAME
-VALIDATE $? "Enabling nodejs:20"
 
-dnf install nodejs -y $LOG_FILE_NAME
+dnf module enable nodejs:20 -y &>>$LOG_FILE_NAME
+VALIDATE $? "Enabling nodejs 20"
+
+dnf install nodejs -y &>>$LOG_FILE_NAME
 VALIDATE $? "installing nodejs"
 
 id expense &>>$LOG_FILE_NAME
@@ -60,7 +60,7 @@ VALIDATE $? "Downloading backend"
 cd /app
 rm -rf /app
 
-unzip/tmp/backend.zip $LOG_FILE_NAME
+unzip/tmp/backend.zip &>>$LOG_FILE_NAME
 VALIDATE $? "UNZIPPING backendfile"
 
 npm install 
